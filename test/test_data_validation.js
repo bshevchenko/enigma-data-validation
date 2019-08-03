@@ -83,9 +83,9 @@ contract('DataValidation', accounts => {
     task = await enigma.decryptTaskResult(task);
     // noinspection ES6ModulesDependencies
     expect(web3.eth.abi.decodeParameters([{
-      type: 'uint256',
+      type: 'bool',
       name: 'status',
-    }], task.decryptedOutput).status).to.equal(1);
+    }], task.decryptedOutput).status).to.equal(false);
   });
 
   // ADDING SECOND DATASET EQUAL TO THE FIRST ONE
@@ -129,9 +129,9 @@ contract('DataValidation', accounts => {
     task = await enigma.decryptTaskResult(task);
     // noinspection ES6ModulesDependencies
     expect(web3.eth.abi.decodeParameters([{
-      type: 'uint256',
+      type: 'bool',
       name: 'status',
-    }], task.decryptedOutput).status).to.equal(2);
+    }], task.decryptedOutput).status).to.equal(true);
   });
 
   // ADDING THIRD DATASET NOT EQUAL (PHONE) TO THE SECOND (PREVIOUS) ONE
@@ -175,9 +175,9 @@ contract('DataValidation', accounts => {
     task = await enigma.decryptTaskResult(task);
     // noinspection ES6ModulesDependencies
     expect(web3.eth.abi.decodeParameters([{
-      type: 'uint256',
+      type: 'bool',
       name: 'status',
-    }], task.decryptedOutput).status).to.equal(2);
+    }], task.decryptedOutput).status).to.equal(false);
   });
 
   // ADDING FOURTH DATASET NOT EQUAL (EMAIL) TO THE THIRD (PREVIOUS) ONE
@@ -221,8 +221,8 @@ contract('DataValidation', accounts => {
     task = await enigma.decryptTaskResult(task);
     // noinspection ES6ModulesDependencies
     expect(web3.eth.abi.decodeParameters([{
-      type: 'uint256',
+      type: 'bool',
       name: 'status',
-    }], task.decryptedOutput).status).to.equal(2);
+    }], task.decryptedOutput).status).to.equal(false);
   });
 });

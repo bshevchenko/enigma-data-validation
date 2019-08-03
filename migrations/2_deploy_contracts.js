@@ -86,18 +86,7 @@ module.exports = async function(deployer, network, accounts) {
 
   // Deploy your Smart and Secret contracts below this point:
 
-  const configMillionairesProblem = {
-    filename: 'millionaires_problem.wasm',
-    fn: 'construct()',
-    args: [],
-    gasLimit: 1000000,
-    gasPrice: utils.toGrains(1),
-    from: accounts[0]
-  };
-  const addressMillionairesProblem = await deploySecretContract(configMillionairesProblem);
-  console.log(`Secret Contract "${configMillionairesProblem.filename}" deployed at Enigma address: ${addressMillionairesProblem}`);
-
-  const configDataValidation = {
+  const config = {
     filename: 'data_validation.wasm',
     fn: 'construct()',
     args: [],
@@ -105,6 +94,6 @@ module.exports = async function(deployer, network, accounts) {
     gasPrice: utils.toGrains(1),
     from: accounts[0]
   };
-  const addressDataValidation = await deploySecretContract(configDataValidation);
-  console.log(`Secret Contract "${configDataValidation.filename}" deployed at Enigma address: ${addressDataValidation}`);
+  const addressDataValidation = await deploySecretContract(config);
+  console.log(`Secret Contract "${config.filename}" deployed at Enigma address: ${addressDataValidation}`);
 };

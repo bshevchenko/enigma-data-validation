@@ -26,21 +26,19 @@ impl Contract {
 // Public trait defining public-facing secret contract functions
 #[pub_interface]
 pub trait ContractInterface {
-    fn add_dataset(phone: String, email: String) -> U256; // returns 1 if first, 2 if equal, 3 if not
+    fn add_dataset(phone: String, email: String) -> bool;
 }
 
 impl ContractInterface for Contract {
     #[no_mangle]
-    fn add_dataset(phone: String, email: String) -> U256 {
+    fn add_dataset(phone: String, email: String) -> bool {
         let mut datasets = Self::get_datasets();
-        let mut result = U256::from(1); // first
+        let mut result = false;
 
         if datasets.len() > 0 {
             let dataset = &datasets[datasets.len() - 1];
             if dataset.phone == phone && dataset.email == email {
-                result = U256::from(2) // equal
-            } else {
-                result = U256::from(3) // not equal
+                result = true;
             }
         }
 
